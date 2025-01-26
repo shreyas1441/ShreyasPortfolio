@@ -4,101 +4,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shreyas Shantanu Bhagwat - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Shreyas Bhagwat Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+    <link rel="icon" href="shre.jpg" type="image/jpg">
+
+    <style>
+        /* Custom animations */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Lifting effect without rotation */
+        .lift-up {
+            transition: transform 0.3s ease-out;
+        }
+
+        .lift-up:hover {
+            transform: translateY(-10px);
+            /* Lifts the card up */
+        }
+
+        /* Profile image styling */
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Section container */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Resume Section */
+        .resume-section {
+            background-color: #f7fafc;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .resume-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .resume-description {
+            margin-top: 10px;
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        /* Iframe styling */
+        .resume-iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Set initial height to 20px */
+        .hover-3d {
+            transition: all 0.3s ease-in-out;
+            max-height: 200px;
+            /* Start with a smaller height */
+            overflow: hidden;
+            /* Hide overflow to maintain the collapsed view */
+            height: auto;
+            /* Allow content to take natural height */
+        }
+
+        /* On hover, increase max-height and scale */
+        .hover-3d:hover {
+            max-height: 1000px;
+            /* Increase to a large value to ensure full expansion */
+            transform: scale(1.05);
+            /* Slight scale-up effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Add shadow effect */
+        }
+    </style>
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <img src="profile.jpg" alt="Profile Photo" class="profile-photo">
-            <h1>Shreyas Shantanu Bhagwat</h1>
-            <p>B.E. - Electronics & Telecommunication Engineering</p>
-            <p>Pune, Maharashtra, India - 411041</p>
-            <div class="contact">
-                <a href="mailto:shreyashantanu@gmail.com">shreyasbhagwat.skn.entc@gmail.com</a> |
-                <a href="tel:+91-7588289655">+91-7588289655</a>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-10">
+        <nav class="container mx-auto flex justify-between items-center py-4 px-6">
+            <div class="flex items-center">
+                <img src="shre.jpg" alt="Profile Picture" class="profile-img mr-4">
+                <h1 class="text-2xl font-bold">Shreyas Bhagwat</h1>
             </div>
-        </div>
+            <ul class="flex space-x-6">
+                <li><a href="#about" class="hover:text-blue-500">About Me</a></li>
+                <li><a href="#education" class="hover:text-blue-500">Education</a></li>
+                <li><a href="#skills" class="hover:text-blue-500">Skills</a></li>
+                <li><a href="#experience" class="hover:text-blue-500">Experience</a></li>
+                <li><a href="#projects" class="hover:text-blue-500">Projects</a></li>
+                <li><a href="#resume" class="hover:text-blue-500">Resume</a></li>
+                <!-- Navigation with Dropdown -->
+                <li class="relative">
+                    <a href="#contact" class="hover:text-blue-500">Contact Me</a>
+                    <ul
+                        class="absolute left-0 hidden mt-2 space-y-2 bg-white text-black shadow-lg rounded-lg w-48 z-10 group-hover:block">
+                        <li><a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank"
+                                class="block px-4 py-2 hover:bg-blue-100">LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/your-instagram-profile" target="_blank"
+                                class="block px-4 py-2 hover:bg-pink-100">Instagram</a></li>
+                        <li><a href="mailto:your-email@example.com" class="block px-4 py-2 hover:bg-green-100">Email</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <div class="card-container">
-            <div class="card" id="education">
-                <h2>Education</h2>
-                <ul>
-                    <li>
-                        <strong>Shrimati Kashibai Navale College Of Engineering</strong><br> B.E. - Electronics & Telecommunication Engineering | CGPA: 5.72 / 10 (2021 - 2025)
-                    </li>
-                    <li>
-                        <strong>New Polytechnic, Kolhapur</strong><br> Diploma - Electronics & Telecommunication Engineering | MSBTE | Percentage: 91.12 / 100 (2022)
-                    </li>
-                    <li>
-                        <strong>Sau Shiladevi D Shinde Sarkar Highschool, Tapowan Kolhapur</strong><br> 10th | MSBSHSE | Percentage: 76 / 100 (2019)
-                    </li>
-                </ul>
-            </div>
-            <div class="card" id="internships">
-                <h2>Internships</h2>
-                <div class="internship">
-                    <h3>iBase ElectroSoft LLP | Technology</h3>
-                    <p>Android Developer (18 Dec, 2023 - 18 Jun, 2024)</p>
-                    <p>Key Skills: Android app design, app development, Android Firebase server connection</p>
-                    <p>I actively contribute to the design, development, and testing of mobile applications. Responsibilities include collaborating with the development team, implementing new features, debugging, and optimizing code for enhanced performance.</p>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-500 text-white text-center py-20 fade-in" id="hero">
+        <div class="section-container">
+            <h2 class="text-4xl font-bold">Welcome to My Portfolio</h2>
+            <p class="mt-4">Electronics and Telecommunication Engineer passionate about solving real-world problems with
+                technology.</p>
+            <lottie-player src="a.json" background="transparent" speed="1"
+                style="width: 300px; height: 300px; margin: 20px auto;" loop autoplay></lottie-player>
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section class="section-container py-16 px-6" id="about">
+        <h2 class="text-3xl font-bold mb-6">About Me</h2>
+        <p>Electronics and Telecommunication Engineering student with hands-on experience in Android
+            development, machine learning, and data science. Skilled in developing applications and
+            delivering innovative solutions. Adept at utilizing programming languages, frameworks, and tools
+            to drive project success and academic research. Passionate about solving real-world problems
+            through technology.</p>
+    </section>
+
+    <!-- Education -->
+    <section class="bg-gray-100 py-16 px-6" id="education">
+        <div class="section-container">
+            <h2 class="text-3xl font-bold mb-6">Education</h2>
+            <div class="grid gap-6 md:grid-cols-2">
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">Bachelor’s in Electronics and Telecommunication</h3>
+                    <p>Smt. Kashibai Navale COE, Pune (2022–2025)</p>
+                    <p>CGPA: 7.19</p>
+                </div>
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">Diploma in Electronics and Telecommunication</h3>
+                    <p>New Polytechnic Kolhapur (2019–2022)</p>
+                    <p>Percentage: 91.12%</p>
                 </div>
             </div>
-            <div class="card" id="projects">
-                <h2>Projects</h2>
-                <ul>
-                    <li>
-                        <strong>Key Bytes by VIVA</strong> (16 Nov, 2023 - 28 Feb, 2024)<br> Key Skills: Android Development, Android Testing, Play Store App Live<br>
-                        <a href="https://play.google.com/store/apps/details?id=very.intelligent.virtial.assistant.aibyviva">Project Link</a>
-                    </li>
-                    <li>
-                        <strong>SpecTouchX - A deep learning project used to detect touches on the Specs to execute the gesture - A Vision Project<br>
-                    </li>
-                    <li>
-                        <strong>Self Chatting AI Trial Version</strong> (11 Apr, 2024 - 22 Apr, 2024)<br> Key Skills: Self learning AI<br>
-                        <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_hey-conducting-a-trial-of-a-self-talking-activity-7187762271819878400-Dmt2?utm_source=share&utm_medium=member_android">Project Link</a>
-                    </li>
+        </div>
+    </section>
 
-                    <li>
-                        <strong>Desktop AI (currently in TRIAL MODE)</strong> (22 Apr, 2024 - 24 Jun, 2024)<br> Key Skills: Python AI automation, Key simulation
+    <!-- Skills -->
+    <section class="section-container py-16 px-6" id="skills">
+        <h2 class="text-3xl font-bold mb-6">Skills</h2>
+        <div class="flex flex-wrap gap-4">
+            <!-- Programming Languages -->
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Java</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Python</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">C</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">C++</span>
 
-                    </li>
+            <!-- Mobile Development -->
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Android Studio</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Kotlin</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Flutter</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Firebase</span>
 
-                    <li>
-                        <strong>Device Info</strong> (21 Mar, 2024 - 10 Apr, 2024)<br> Key Skills: Python, Android, Firebase
-                        <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_devicemanagement-windowsmonitoring-realtimeinsights-activity-7183041859160596480-RzOr?utm_source=share&utm_medium=member_desktop">Project Link</a>
-                    </li>
+            <!-- Web Development -->
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">HTML</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">CSS</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">MySQL</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">APIs</span>
 
-                    <li>
-                        <strong>MuziKa</strong> (18 Dec, 2023 - 02 Jan, 2024)<br> Mentor: Nakul Deshmukh | Team Size: 4<br> Key Skills: Android app development
-                        <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_ibase-activity-7147932974188068867-fHHa?utm_source=share&utm_medium=member_desktop">Project Link</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card" id="personal">
-                <h2>Personal Details</h2>
-                <p>Gender: Male</p>
-                <p>Marital Status: Single</p>
-                <p>Date of Birth: 05 Mar, 2004</p>
-                <p>Languages: English, Marathi, Hindi</p>
-                <p>Address: Sai Dham Recidency, Near Sinhgad College, Vadgaon BK, Pune, Maharashtra, India - 411041</p>
-                <p>Permanent Address: 302, Shantiban, near Kranti singh Nana Patil, Kolhapur, Maharashtra, India - 416012</p>
+            <!-- Data Science -->
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Machine Learning</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Deep Learning</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Data Analysis</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Data Analytics</span>
+
+            <!-- Frameworks & Tools -->
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">OpenCV</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Computer Vision</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Image Processing</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover-3d">Firebase Cloud Messaging</span>
+
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="bg-gray-100 py-16 px-6" id="projects">
+        <div class="section-container">
+            <h2 class="text-3xl font-bold mb-6">Projects</h2>
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">Key Bytes by VIVA</h3>
+                    <p>Virtual assistant app with integrated vocal and type commands. Incorporated multiple features
+                        accessible directly from the keyboard.</p>
+                    <a href="https://play.google.com/store/apps/details?id=very.intelligent.virtial.assistant.aibyviva"
+                        class="text-blue-500 hover:underline">View on Google Play</a>
+                </div>
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">SuperbAI - Google Gemini competition</h3>
+                    <p>SuperbAI revolutionizes how you access and manage information with its seamless integration of AI
+                        and Vision capabilities. The app provides an effortless experience by allowing you to interact
+                        with content directly from your screen without switching between multiple apps. With the
+                        floating button feature, you can easily activate voice commands, access a search bar, or view
+                        floating displays for quick information retrieval. Smart Vision integration lets you capture
+                        screenshots or photos and instantly get insights or answers about what’s on your screen.
+                        Customize your experience with various AI roles tailored to different needs, and use simple
+                        voice commands or the search bar to execute tasks, browse, and manage contacts. Automated
+                        reminders ensure you never miss a task or meeting. SuperbAI offers intelligent, on-demand
+                        information access, making it an essential tool for modern convenience. For more details, simply
+                        tap the 'Info' button within the app.</p>
+                    <a href="https://ai.google.dev/competition/projects/superbai"
+                        class="text-blue-500 hover:underline">Project Submission</a>
+                    <p></p>
+                    <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_im-excited-to-share-that-ive-developed-activity-7237692722059374594-8uca?utm_source=share&utm_medium=member_desktop"
+                        class="text-blue-500 hover:underline">LinkedIn</a>
+                </div>
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">SpecTouchX - In progress</h3>
+                    <p>Deep learning model for touch and pinch detection on glass surfaces. Achieved 95.34% validation
+                        accuracy through advanced data modeling.</p>
+                </div>
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">Ovarian Cancer Multiclass Prediction - Academic Project - In progress</h3>
+                    <p>Built a classification model using histopathology images for cancer detection. Focused on
+                        academic research and model optimization.</p>
+                    <a href="https://huggingface.co/spaces/Shreyas1441AI/OvarianCancerPrediction-28"
+                        class="text-blue-500 hover:underline">Hugging Face Deployment</a>
+                </div>
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">MuziKa App</h3>
+                    <p>Developed a music-streaming app during an internship with iBase Electrosoft LLP. Created a
+                        user-friendly platform to enhance the music-listening experience.</p>
+                    <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_ibase-activity-7147932974188068867-fHHa?utm_source=share&utm_medium=member_android"
+                        class="text-blue-500 hover:underline">View on LinkedIn</a>
+                </div>
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">Device Info</h3>
+                    <p>Developed a project to monitor your laptop in real-time, checking battery status, drive storage,
+                        CPU, memory usage, and other important metrics.</p>
+                    <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_devicemanagement-windowsmonitoring-realtimeinsights-activity-7183041859160596480-RzOr?utm_source=share&utm_medium=member_android"
+                        class="text-blue-500 hover:underline">View on LinkedIn</a>
+                </div>
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">Self Talk AI Trial</h3>
+                    <p>Enabled two AI models to engage in a conversation resembling human communication, aiming to
+                        enhance AI interaction.</p>
+                    <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_hey-conducting-a-trial-of-a-self-talking-activity-7187762271819878400-Dmt2?utm_source=share&utm_medium=member_android"
+                        class="text-blue-500 hover:underline">View on LinkedIn</a>
+                </div>
+                <div class="p-4 bg-white shadow rounded hover-3d">
+                    <h3 class="font-semibold">CodeSave</h3>
+                    <p>Personal coding project designed to streamline and organize code management. Works efficiently
+                        even in low-internet scenarios.</p>
+                    <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_introducing-codesave-my-personal-coding-activity-7147934294659813376-EBsm?utm_source=share&utm_medium=member_android"
+                        class="text-blue-500 hover:underline">View on LinkedIn</a>
+                </div>
             </div>
         </div>
-    </main>
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Shreyas Shantanu Bhagwat</p>
-            <div class="social">
-                <a href="mailto:shreyasbhagwat.skn.entc@gmail.com">Email</a> |
-                <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_hey-conducting-a-trial-of-a-self-talking-activity-7187762271819878400-Dmt2?utm_source=share&utm_medium=member_android">LinkedIn</a> |
-                <a href="tel:+91-7588289655">Phone</a>
+    </section>
+
+    </section>
+
+    <!-- Certifications -->
+    <section class="bg-white py-16 px-6" id="certifications">
+        <div class="section-container">
+            <h2 class="text-3xl font-bold mb-6">Certifications</h2>
+
+            <!-- AI, Machine Learning, and Data Science -->
+            <div class="p-4 bg-white shadow rounded hover-3d mb-6">
+                <h3 class="font-semibold">AI, Machine Learning, and Data Science</h3>
+                <p>Udemy, Online</p>
+                <p>Jun 2024 - Jul 2024</p>
+                <p>This course covers complete machine learning, data science, and deep learning tasks and knowledge,
+                    enhancing skills in AI-driven technologies.</p>
+                <a href="https://drive.google.com/file/d/1Ho57byrE6Zchd-vF2OUogLNWw5cboq3n/view?usp=sharing"
+                    class="text-blue-500 hover:underline">Certificate</a>
             </div>
+
+            <!-- Play Store Listing Certificate Announcement -->
+            <div class="p-4 bg-white shadow rounded hover-3d mb-6">
+                <h3 class="font-semibold text-xl">🌟 Big News! 🌟</h3>
+                <p class="mt-2">I'm thrilled to announce that I’ve just earned my Play Store Listing Certificate! 📱✨
+                </p>
+                <p class="mt-2">This is a key milestone in my app development journey, ensuring I can deliver
+                    exceptional Android app experiences. 🚀</p>
+                <p class="mt-2">I’m incredibly grateful for the support along the way, and I’m eager to leverage this
+                    knowledge to build even better apps!</p>
+                <a href="https://drive.google.com/file/d/1JSwF3N9HFs7IcUEIeUjDTVYcFuTzBTft/view?usp=sharing"
+                    target="_blank" class="text-blue-500 hover:underline mt-4 inline-block">View my Play Store
+                    Listing</a>
+            </div>
+
+            <!-- SCALER MASTERCLASS CERTIFICATE -->
+            <div class="p-4 bg-white shadow rounded hover-3d">
+                <h3 class="font-semibold">SCALER MASTERCLASS</h3>
+                <p class="font-semibold">CERTIFICATE OF PARTICIPATION</p>
+                <p class="mt-2">Proudly presented to <strong>SHREYAS SHANTANU BHAGWAT</strong></p>
+                <p class="mt-2">For participating and upskilling with the Data Science VS Machine Learning VS Artificial
+                    Intelligence Masterclass on 20th July 2024</p>
+                <p class="mt-4 font-semibold">Anshuman Singh</p>
+                <p>Co-founder, Scaler</p>
+                <p class="mt-2 font-semibold">Abhimanyu Saxena</p>
+                <p>Co-founder, Scaler</p>
+                <a href="https://www.linkedin.com/posts/shreyas-bhagwat-8a1118209_activity-7220655864045551616-PR6_?utm_source=share&utm_medium=member_desktop"
+                    class="text-blue-500 hover:underline">Certificate</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Resume -->
+    <section class="section-container py-16 px-6" id="resume">
+        <div class="resume-section">
+            <h2 class="resume-title">My Resume</h2>
+            <p class="resume-description">Below is my resume. You can also download it directly using the link below.
+            </p>
+            <!-- Embedded PDF -->
+            <object data="Shreyas-resume.pdf" type="application/pdf" class="resume-iframe">
+                <p>Your browser does not support embedded PDFs. You can <a href="Shreyas-resume.pdf" download>download
+                        the resume</a> here.</p>
+            </object>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p id="contact" class="mb-4">Connect with me:</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/shreyas-bhagwat-8a1118209/" target="_blank"
+                    class="text-blue-500 hover:text-blue-300">
+                    LinkedIn
+                </a>
+                <a href="https://www.instagram.com/shreyas1441" target="_blank"
+                    class="text-pink-500 hover:text-pink-300">
+                    Instagram
+                </a>
+                <a href="mailto:shreyashantanu@gmail.com" class="text-green-500 hover:text-green-300">
+                    Email
+                </a>
+            </div>
+            <p class="mt-4 text-sm">&copy; 2025 Shreyas Bhagwat. All rights reserved.</p>
         </div>
     </footer>
-    <script src="script.js"></script>
 </body>
 
 </html>
